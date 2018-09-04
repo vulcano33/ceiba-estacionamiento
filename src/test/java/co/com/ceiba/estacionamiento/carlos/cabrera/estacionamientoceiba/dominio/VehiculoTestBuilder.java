@@ -1,4 +1,4 @@
-package co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba;
+package co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio;
 
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.Carro;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.Moto;

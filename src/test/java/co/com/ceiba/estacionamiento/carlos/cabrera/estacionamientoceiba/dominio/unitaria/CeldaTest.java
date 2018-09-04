@@ -1,4 +1,4 @@
-package co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio;
+package co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.unitaria;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -6,7 +6,11 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.VehiculoTestBuilder;
+import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.Celda;
+import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.CeldaCarro;
+import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.CeldaMoto;
+import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.Vehiculo;
+import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.VehiculoTestBuilder;
 
 public class CeldaTest {
 	
