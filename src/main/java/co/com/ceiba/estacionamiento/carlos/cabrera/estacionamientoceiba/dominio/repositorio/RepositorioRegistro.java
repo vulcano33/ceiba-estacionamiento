@@ -13,11 +13,11 @@ public interface RepositorioRegistro {
 	Registro ingresarRegistro(Registro registro);
 	
 	/**
-	 * Permite retirar un vehiculo del parqueadero, retornando la factura con el valor a pagar
+	 * Permite retirar un registro de un vehiculo del parqueadero
 	 * @param vehiculo
 	 * @return
 	 */
-	Registro retirarVehiculo(Registro registro);
+	Registro retirarRegistro(Registro registro);
 	
 	/**
 	 * Retorna una lista de los registros activos del parqueadero

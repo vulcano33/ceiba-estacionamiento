@@ -4,34 +4,24 @@ import java.time.LocalDateTime;
 import java.util.List;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.excepcion.ParqueaderoException;
 
-public class Parqueadero {
 	
-	private static final String NO_HAY_CUPOS_PARA_CARROS = "Ya no hay cupos para carros disponibles";
+public class Parqueadero {
+	private static final String NO_HAY_CUPOS_PARA_VEHICULOS = "Ya no hay cupos disponibles para vehiculos";
 	private List<Celda> celdas;
 	private List<Registro> registros;
-	private static Parqueadero instanciaParqueadero;
 	
-	private Parqueadero() {
-	}
-
-	public static Parqueadero obtenerInstancia() {
-		if (instanciaParqueadero == null)
-			instanciaParqueadero = new Parqueadero();
-		return instanciaParqueadero;
-	}
-	
-	public Parqueadero(List<Celda> celdasCarros, List<Registro> registros) {
-		this.celdas = celdasCarros;
+	public Parqueadero(List<Celda> celdas, List<Registro> registros) {
+		this.celdas = celdas;
 		this.registros = registros;
 	}
 
 	public Registro ingresarVehiculo(Vehiculo vehiculo) {
 		// TODO> Cómo probar este método?
-
+		
 		Celda celdaVehiculo = this.ingresarVehiculoACelda(vehiculo);
 
 		if (celdaVehiculo == null) {
-			throw new ParqueaderoException(NO_HAY_CUPOS_PARA_CARROS);
+			throw new ParqueaderoException(NO_HAY_CUPOS_PARA_VEHICULOS);
 		}
 		
 		Registro registro = new Registro(LocalDateTime.now(), vehiculo, celdaVehiculo);

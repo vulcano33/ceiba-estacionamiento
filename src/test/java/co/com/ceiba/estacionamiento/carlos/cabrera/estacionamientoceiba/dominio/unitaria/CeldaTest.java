@@ -15,7 +15,7 @@ import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.
 public class CeldaTest {
 	
 	private static final String PLACA_CARRO = "QET443";
-	private static final String CILINDRAJE_CARRO = "QET443";
+	private static final String CILINDRAJE_CARRO = "1200";
 	private static final String PLACA_MOTO = "ORA29A";
 	private static final String CILINDRAJE_MOTO = "600";
 	private Celda celdaCarro;
