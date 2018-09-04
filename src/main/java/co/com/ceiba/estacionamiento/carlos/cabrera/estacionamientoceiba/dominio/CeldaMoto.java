@@ -1,21 +1,15 @@
 package co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio;
 
-
-public class CeldaMoto implements Celda {
-	
-	private Vehiculo moto;
-	
-	public CeldaMoto(Moto moto) {
-		this.moto = moto;
-	}
+public class CeldaMoto extends Celda {
 
 	@Override
-	public boolean estaLibre() {
-		return moto == null;
-	}
+	public boolean ingresarVehiculo(Vehiculo vehiculo) {
+		boolean vehiculoIngresado = false;
 
-	@Override
-	public void ingresarVehiculo(Vehiculo vehiculo) {
-		// TODO Add implementation for this method
+		if (vehiculo instanceof Moto) {
+			vehiculoIngresado = true;
+		}
+
+		return vehiculoIngresado;
 	}
 }

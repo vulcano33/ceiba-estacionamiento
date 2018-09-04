@@ -14,7 +14,7 @@ public class Vigilante {
 	 * @param carro
 	 * @return
 	 */
-	public Registro ingresarCarro(Carro carro) {
-		return parqueadero.ingresarVehiculo(carro);
+	public Registro ingresarCarro(Vehiculo vehiculo) {
+		return parqueadero.ingresarVehiculo(vehiculo);
 	}
 }
