@@ -11,4 +11,8 @@ public abstract class Celda {
 	public abstract boolean ingresarVehiculo(Vehiculo vehiculo);
 	
 	public abstract void retirarVehiculo();
+	
+	public boolean estaLibre() {
+		return vehiculo == null;
+	}
 }

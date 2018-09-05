@@ -5,7 +5,7 @@ public class CeldaMoto extends Celda {
 	@Override
 	public boolean ingresarVehiculo(Vehiculo vehiculo) {
 		boolean vehiculoIngresado = false;
-		if (vehiculo instanceof Moto) {
+		if (this.estaLibre() && vehiculo instanceof Moto) {
 			this.vehiculo = vehiculo;
 			vehiculoIngresado = true;
 		}

@@ -19,8 +19,6 @@ public class Parqueadero {
 
 	public Registro ingresarVehiculo(Vehiculo vehiculo) {
 		// TODO verificar que el vehiculo que se quiere ingresar ya no exista?
-		// TODO adicionar validación para 20 carros simultáneos y 10 motos simultáneos
-		
 		Celda celdaVehiculo = this.ingresarVehiculoACelda(vehiculo);
 
 		if (celdaVehiculo == null) {
@@ -39,12 +37,7 @@ public class Parqueadero {
 		Celda celdaOcupadaPorVehiculo = null;
 
 		for (Celda posibleCelda : celdas) {
-			
-			// TODO
-			// Debería preguntar si están libres antes de intentar ingresar el vehículo?
-			// La lista de celdas al crear el parqueadero, es la lista de carros y motos o
-			// el parqueadero tiene dos listas de celdas, una de carros y una de motos?
-			
+
 			if (posibleCelda.ingresarVehiculo(vehiculo)) {
 				celdaOcupadaPorVehiculo = posibleCelda;
 				break;

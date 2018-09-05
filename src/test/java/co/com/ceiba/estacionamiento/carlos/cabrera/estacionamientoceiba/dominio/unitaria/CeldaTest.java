@@ -2,10 +2,10 @@ package co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 import org.junit.Before;
 import org.junit.Test;
-
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.Celda;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.CeldaCarro;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.CeldaMoto;
@@ -69,5 +69,21 @@ public class CeldaTest {
 		// Assert
 		assertFalse(vehiculoIngresado);
 	}
-
+	
+	@Test
+	public void estaLibreTest() {
+		assertTrue(celdaCarro.estaLibre());
+		assertTrue(celdaMoto.estaLibre());
+	}
+	
+	@Test
+	public void noEstaLibreTest() {
+		
+		Celda celdaCarro = mock(CeldaCarro.class);
+		Celda celdaMoto = mock(CeldaMoto.class); 
+		when(celdaCarro.ingresarVehiculo(carro)).thenReturn(true);
+		when(celdaMoto.ingresarVehiculo(moto)).thenReturn(true);
+		assertFalse(celdaCarro.estaLibre());
+		assertFalse(celdaMoto.estaLibre());
+	}
 }
