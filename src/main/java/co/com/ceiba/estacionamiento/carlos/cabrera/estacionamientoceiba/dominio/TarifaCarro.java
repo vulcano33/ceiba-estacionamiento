@@ -1,6 +1,6 @@
 package co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class TarifaCarro extends Tarifa {
 	
@@ -21,7 +21,7 @@ public class TarifaCarro extends Tarifa {
 		Factura factura = null;
 		
 		if (registro.getVehiculo() instanceof Carro) {
-			HashMap<String, Integer> tiempoPermanecia = calendario.calcularTiempoEntreFechas(registro.getFechaEntrada(),
+			Map<String, Integer> tiempoPermanecia = calendario.calcularTiempoEntreFechas(registro.getFechaEntrada(),
 					registro.getFechaSalida());
 			
 			Integer diasDePermanencia = tiempoPermanecia.get("dias");

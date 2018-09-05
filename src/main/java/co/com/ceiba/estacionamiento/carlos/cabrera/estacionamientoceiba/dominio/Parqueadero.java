@@ -83,4 +83,8 @@ public class Parqueadero {
 		}
 		return registroEncontrado;
 	}
+
+	public List<Registro> obtenerRegistros() {
+		return registros;
+	}
 }

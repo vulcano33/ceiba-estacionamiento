@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Tiene métodos útiles para realizar cálculos con fechas
@@ -25,9 +26,9 @@ public class Calendario {
 	 * @param fechaSalida
 	 * @return Map con el tiempo de permanencia así: un valor para días (clave dias) y otro para las horas restantes (clave horasRestantes)
 	 */
-	public HashMap<String, Integer> calcularTiempoEntreFechas(LocalDateTime fechaEntrada, LocalDateTime fechaSalida) {
+	public Map<String, Integer> calcularTiempoEntreFechas(LocalDateTime fechaEntrada, LocalDateTime fechaSalida) {
 		
-		HashMap<String, Integer> tiempoDePermanencia = new HashMap<>(); 
+		Map<String, Integer> tiempoDePermanencia = new HashMap<>(); 
 		Long tiempoPermanenciaEnDias = ChronoUnit.DAYS.between(fechaEntrada, fechaSalida);
 		Long tiempoPermanenciaEnHoras = ChronoUnit.HOURS.between(fechaEntrada, fechaSalida);
 		Long horasRestantes = tiempoPermanenciaEnHoras % HORAS_DEL_DIA;
