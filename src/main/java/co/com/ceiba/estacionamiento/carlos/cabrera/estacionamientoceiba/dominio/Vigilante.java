@@ -36,4 +36,8 @@ public class Vigilante {
 		}
 		return ingresoDenegado;
 	}
+	
+	public Registro retirarVehiculo(Vehiculo vehiculo) {
+		return parqueadero.retirarVehiculo(vehiculo);
+	}
 }

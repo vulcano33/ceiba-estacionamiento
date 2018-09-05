@@ -11,4 +11,9 @@ public class CeldaCarro extends Celda {
 		}
 		return vehiculoIngresado;
 	}
+
+	@Override
+	public void retirarVehiculo() {
+		this.vehiculo = null;
+	}
 }

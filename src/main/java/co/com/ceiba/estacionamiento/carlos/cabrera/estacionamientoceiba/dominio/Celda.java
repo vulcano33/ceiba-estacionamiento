@@ -8,5 +8,7 @@ public abstract class Celda {
 	
 	protected Vehiculo vehiculo;
 	
-	public abstract boolean ingresarVehiculo(Vehiculo vehiculo) ;
+	public abstract boolean ingresarVehiculo(Vehiculo vehiculo);
+	
+	public abstract void retirarVehiculo();
 }

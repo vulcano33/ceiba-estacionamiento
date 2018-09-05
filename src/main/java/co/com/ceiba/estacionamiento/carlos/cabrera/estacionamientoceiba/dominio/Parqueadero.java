@@ -2,11 +2,13 @@ package co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio
 
 import java.time.LocalDateTime;
 import java.util.List;
+
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.excepcion.ParqueaderoException;
 
 	
 public class Parqueadero {
-	private static final String NO_HAY_CUPOS_PARA_VEHICULOS = "Ya no hay cupos disponibles para vehiculos";
+	public static final String NO_HAY_CUPOS_PARA_VEHICULOS = "Ya no hay cupos disponibles para vehiculos";
+	public static final String REGISTRO_NO_ENCONTRADO = "No se encontró un registro asociado a la placa";
 	private List<Celda> celdas;
 	private List<Registro> registros;
 	
@@ -16,7 +18,8 @@ public class Parqueadero {
 	}
 
 	public Registro ingresarVehiculo(Vehiculo vehiculo) {
-		// TODO> Cómo probar este método?
+		// TODO verificar que el vehiculo que se quiere ingresar ya no exista?
+		// TODO adicionar validación para 20 carros simultáneos y 10 motos simultáneos
 		
 		Celda celdaVehiculo = this.ingresarVehiculoACelda(vehiculo);
 
@@ -48,5 +51,43 @@ public class Parqueadero {
 			}
 		}
 		return celdaOcupadaPorVehiculo;
+	}
+
+	// TODO verificar este método. Cómo lo pruebo?
+	public Registro retirarVehiculo(Vehiculo vehiculo) {
+		
+		// Busca registro por la placa del vehiculo
+		Registro registro = this.obtenerRegistroPorPlaca(vehiculo.getPlaca());
+		
+		if (registro == null) {
+			throw new ParqueaderoException(REGISTRO_NO_ENCONTRADO);
+		}
+		
+		// Retirar el vehiculo de la celda
+		Celda celdaVehiculo = this.retirarVehiculoDeCelda(registro);
+		
+		// Remueve la celda y el registro de los arreglos de registros del parqueadero
+		celdas.remove(celdaVehiculo);
+		registros.remove(registro);
+		
+		return registro;
+	}
+
+	private Celda retirarVehiculoDeCelda(Registro registro) {
+		Celda celdaVehiculo = registro.getCelda(); 
+		celdaVehiculo.retirarVehiculo();
+		return celdaVehiculo;
+	}
+
+	private Registro obtenerRegistroPorPlaca(String placa) {
+		
+		Registro registroEncontrado = null;
+		
+		for (Registro registro : registros) {
+			if (registro.getVehiculo().getPlaca().equalsIgnoreCase(placa)) {
+				registroEncontrado = registro;
+			}
+		}
+		return registroEncontrado;
 	}
 }
