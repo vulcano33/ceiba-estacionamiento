@@ -17,19 +17,26 @@ public class TarifaCarro extends Tarifa {
 
 	@Override
 	public Factura generarFactura(Registro registro, Calendario calendario) {
-
-		HashMap<String, Integer> tiempoPermanecia = calendario.calcularTiempoEntreFechas(registro.getFechaEntrada(),
-				registro.getFechaSalida());
-
-		Integer diasDePermanencia = tiempoPermanecia.get("dias");
-		Integer horasRestantesPermanencia = tiempoPermanecia.get("horasRestantes");
-
-		Integer valorAPagar = 0;
-		if (horasRestantesPermanencia > HORAS_LIMITE_DIA) {
-			valorAPagar = (diasDePermanencia + DIA_ADICIONAL) * valorDia;
-		} else {
-			valorAPagar = diasDePermanencia * valorDia + horasRestantesPermanencia * valorHora;
+		
+		Factura factura = null;
+		
+		if (registro.getVehiculo() instanceof Carro) {
+			HashMap<String, Integer> tiempoPermanecia = calendario.calcularTiempoEntreFechas(registro.getFechaEntrada(),
+					registro.getFechaSalida());
+			
+			Integer diasDePermanencia = tiempoPermanecia.get("dias");
+			Integer horasRestantesPermanencia = tiempoPermanecia.get("horasRestantes");
+			
+			Integer valorAPagar = 0;
+			if (horasRestantesPermanencia > HORAS_LIMITE_DIA) {
+				valorAPagar = (diasDePermanencia + DIA_ADICIONAL) * valorDia;
+			} else {
+				valorAPagar = diasDePermanencia * valorDia + horasRestantesPermanencia * valorHora;
+			}
+			factura = new Factura(registro, valorAPagar);
 		}
-		return new Factura(registro, valorAPagar);
+		
+		return factura;
+
 	}
 }

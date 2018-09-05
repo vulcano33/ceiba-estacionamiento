@@ -27,22 +27,29 @@ public class TarifaMoto extends Tarifa {
 
 	@Override
 	public Factura generarFactura(Registro registro, Calendario calendario) {
-		HashMap<String, Integer> tiempoPermanecia = calendario.calcularTiempoEntreFechas(registro.getFechaEntrada(),
-				registro.getFechaSalida());
-
-		Integer diasDePermanencia = tiempoPermanecia.get("dias");
-		Integer horasRestantesPermanencia = tiempoPermanecia.get("horasRestantes");
-
-		Integer valorAPagar = 0;
-		if (horasRestantesPermanencia > HORAS_LIMITE_DIA) {
-			valorAPagar = (diasDePermanencia + DIA_ADICIONAL) * valorDia;
-		} else {
-			valorAPagar = diasDePermanencia * valorDia + horasRestantesPermanencia * valorHora;
+		
+		Factura factura = null;
+		
+		if (registro.getVehiculo() instanceof Moto) {
+			HashMap<String, Integer> tiempoPermanecia = calendario.calcularTiempoEntreFechas(registro.getFechaEntrada(),
+					registro.getFechaSalida());
+			
+			Integer diasDePermanencia = tiempoPermanecia.get("dias");
+			Integer horasRestantesPermanencia = tiempoPermanecia.get("horasRestantes");
+			
+			Integer valorAPagar = 0;
+			if (horasRestantesPermanencia > HORAS_LIMITE_DIA) {
+				valorAPagar = (diasDePermanencia + DIA_ADICIONAL) * valorDia;
+			} else {
+				valorAPagar = diasDePermanencia * valorDia + horasRestantesPermanencia * valorHora;
+			}
+			
+			if (aplicaTarifaMoto500CC(registro.getVehiculo())) {
+				valorAPagar += valorAdicionalCC;
+			}
+			factura = new Factura(registro, valorAPagar);
 		}
 		
-		if (aplicaTarifaMoto500CC(registro.getVehiculo())) {
-			valorAPagar += valorAdicionalCC;
-		}
-		return new Factura(registro, valorAPagar);
+		return factura;
 	}
 }

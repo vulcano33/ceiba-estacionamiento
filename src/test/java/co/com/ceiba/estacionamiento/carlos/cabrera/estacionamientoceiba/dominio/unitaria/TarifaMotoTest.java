@@ -1,6 +1,7 @@
 package co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.unitaria;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -38,6 +39,22 @@ public class TarifaMotoTest {
 	public void prepararDatos() {
 		// Arrange
 		tarifaMoto = new TarifaMoto(VALOR_HORA, VALOR_DIA, VALORADICIONALCC);
+	}
+	
+	@Test
+	public void generarFacturaMotoParaCarroTest() {
+		// Arrange
+		Vehiculo carro = new VehiculoTestBuilder().buildCarro();
+
+		Calendario calendario = mock(Calendario.class);
+		Registro registro = mock(Registro.class);
+		when(registro.getVehiculo()).thenReturn(carro);
+
+		// Act
+		Factura factura = tarifaMoto.generarFactura(registro, calendario);
+
+		// Assert
+		assertNull(factura);
 	}
 
 	@Test
