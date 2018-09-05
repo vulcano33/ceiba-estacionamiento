@@ -11,7 +11,7 @@ import org.junit.Test;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.Calendario;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.Parqueadero;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.Registro;
-import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.RegistroBuilder;
+import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.RegistroTestBuilder;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.Vehiculo;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.VehiculoTestBuilder;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.Vigilante;
@@ -50,7 +50,7 @@ public class VigilanteTest {
 		Calendario calendario = mock(Calendario.class);
 		when(calendario.obtenerDiaDeHoy()).thenReturn(DayOfWeek.SUNDAY);
 		Parqueadero parqueadero = mock(Parqueadero.class);
-		Registro registro = new RegistroBuilder().build();
+		Registro registro = new RegistroTestBuilder().build();
 		when(parqueadero.ingresarVehiculo(vehiculo)).thenReturn(registro);
 		Vigilante vigilante = new Vigilante(parqueadero, calendario);
 

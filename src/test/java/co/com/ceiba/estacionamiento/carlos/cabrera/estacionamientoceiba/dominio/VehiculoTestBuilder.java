@@ -6,10 +6,10 @@ import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.
 public class VehiculoTestBuilder {
 	
 	private static final String PLACA = "QET443";
-	private static final String CILINDRAJE = "1200";
+	private static final Integer CILINDRAJE = 1200;
 	
 	private String placa;
-	private String cilindrajeCC;
+	private Integer cilindrajeCC;
 
 	public VehiculoTestBuilder() {
 		this.placa = PLACA;
@@ -21,7 +21,7 @@ public class VehiculoTestBuilder {
 		return this;
 	}
 
-	public VehiculoTestBuilder conCilindrajeCC(String cilindrajeCC) {
+	public VehiculoTestBuilder conCilindrajeCC(Integer cilindrajeCC) {
 		this.cilindrajeCC = cilindrajeCC;
 		return this;
 	}
@@ -33,5 +33,4 @@ public class VehiculoTestBuilder {
 	public Moto buildMoto() {
 		return new Moto(this.placa, this.cilindrajeCC);
 	}
-
 }

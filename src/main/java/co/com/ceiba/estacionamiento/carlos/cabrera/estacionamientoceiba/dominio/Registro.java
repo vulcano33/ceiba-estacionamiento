@@ -30,4 +30,8 @@ public class Registro {
 	public Celda getCelda() {
 		return celda;
 	}
+	
+	public void setFechaSalida(LocalDateTime fechaSalida) {
+		this.fechaSalida = fechaSalida;
+	}
 }

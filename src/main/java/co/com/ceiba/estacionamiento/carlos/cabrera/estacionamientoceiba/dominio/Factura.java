@@ -4,18 +4,16 @@ public class Factura {
 	private Registro registro;
 	private Integer valorAPagar;
 
-	public Factura(Registro registro) {
-		super();
+	public Factura(Registro registro, Integer valorAPagar) {
 		this.registro = registro;
-	}
-
-	public Factura calcularValorAPagar() {
-		// TODO Implementar este método (calcular el valor a pagar utilizando el objeto
-		// registro)
-		return this;
+		this.valorAPagar = valorAPagar;
 	}
 
 	public Integer getValorAPagar() {
 		return valorAPagar;
+	}
+	
+	public Registro getRegistro() {
+		return registro;
 	}
 }

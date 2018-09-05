@@ -3,9 +3,9 @@ package co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio
 public class Vehiculo {
 	
 	private String placa;
-	private String cilindrajeCC;
+	private Integer cilindrajeCC;
 	
-	public Vehiculo(String placa, String cilindrajeCC) {
+	public Vehiculo(String placa, Integer cilindrajeCC) {
 		this.placa = placa;
 		this.cilindrajeCC = cilindrajeCC;
 	}
@@ -14,7 +14,7 @@ public class Vehiculo {
 		return placa;
 	}
 
-	public String getCilindrajeCC() {
+	public Integer getCilindrajeCC() {
 		return cilindrajeCC;
 	}
 }

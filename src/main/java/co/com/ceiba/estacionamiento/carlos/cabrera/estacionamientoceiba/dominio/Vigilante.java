@@ -16,7 +16,6 @@ public class Vigilante {
 		this.calendario = calendario;
 	}
 	
-	// ¿Cómo podría probar este método?
 	public Registro ingresarVehiculo(Vehiculo vehiculo) {
 		if(ingresoDenegado(vehiculo.getPlaca())) {
 			throw new ParqueaderoException(NO_ESTA_AUTORIZADO_A_INGRESAR);

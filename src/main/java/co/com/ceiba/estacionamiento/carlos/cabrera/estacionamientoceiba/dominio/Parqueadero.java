@@ -50,20 +50,16 @@ public class Parqueadero {
 		return celdaOcupadaPorVehiculo;
 	}
 
-	// TODO verificar este método. Cómo lo pruebo?
 	public Registro retirarVehiculo(Vehiculo vehiculo) {
 		
-		// Busca registro por la placa del vehiculo
 		Registro registro = this.obtenerRegistroPorPlaca(vehiculo.getPlaca());
 		
 		if (registro == null) {
 			throw new ParqueaderoException(REGISTRO_NO_ENCONTRADO);
 		}
 		
-		// Retirar el vehiculo de la celda
 		Celda celdaVehiculo = this.retirarVehiculoDeCelda(registro);
-		
-		// Remueve la celda y el registro de los arreglos de registros del parqueadero
+
 		celdas.remove(celdaVehiculo);
 		registros.remove(registro);
 		
