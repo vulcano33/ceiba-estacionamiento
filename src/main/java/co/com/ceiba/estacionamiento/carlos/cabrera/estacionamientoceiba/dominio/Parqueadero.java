@@ -9,6 +9,7 @@ import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.
 public class Parqueadero {
 	public static final String NO_HAY_CUPOS_PARA_VEHICULOS = "Ya no hay cupos disponibles para vehiculos";
 	public static final String REGISTRO_NO_ENCONTRADO = "No se encontró un registro asociado a la placa";
+	private static final String YA_EXISTE_REGISTRO = "Ya existe un registro asociado a la placa";
 	private List<Celda> celdas;
 	private List<Registro> registros;
 	
@@ -18,13 +19,16 @@ public class Parqueadero {
 	}
 
 	public Registro ingresarVehiculo(Vehiculo vehiculo) {
-		// TODO verificar que el vehiculo que se quiere ingresar ya no exista?
-		Celda celdaVehiculo = this.ingresarVehiculoACelda(vehiculo);
+		
+		if(this.obtenerRegistroPorPlaca(vehiculo.getPlaca()) != null) {
+			throw new ParqueaderoException(YA_EXISTE_REGISTRO);
+		}
 
+		Celda celdaVehiculo = this.ingresarVehiculoACelda(vehiculo);
 		if (celdaVehiculo == null) {
 			throw new ParqueaderoException(NO_HAY_CUPOS_PARA_VEHICULOS);
 		}
-		
+
 		Registro registro = new Registro(LocalDateTime.now(), vehiculo, celdaVehiculo);
 		registros.add(registro);
 	
