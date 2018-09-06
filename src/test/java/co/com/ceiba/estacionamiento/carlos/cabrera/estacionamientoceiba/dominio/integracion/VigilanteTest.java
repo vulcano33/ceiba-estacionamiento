@@ -76,6 +76,25 @@ public class VigilanteTest {
 			celdas.add(new CeldaMoto());
 		}
 	}
+	
+	@Test(expected = ParqueaderoException.class)
+	public void ingresarVehiculoYNoHayCuposTest() {
+		// Arrange
+		Parqueadero parqueadero = new Parqueadero(celdas, registros);
+		Calendario calendario = mock(Calendario.class);
+		when(calendario.obtenerDiaDeHoy()).thenReturn(DayOfWeek.WEDNESDAY);
+		Vigilante vigilante = new Vigilante(parqueadero, calendario, tarifas);
+
+		// Act
+		for (int indice = 0; indice < NUMERO_DE_CELDAS_DE_MOTOS; indice++) {
+			Vehiculo moto = new VehiculoTestBuilder().conPlaca("A" + indice).buildMoto();
+			Registro registro = vigilante.ingresarVehiculo(moto);
+			Assert.assertEquals(moto.getPlaca(), registro.getVehiculo().getPlaca());
+		}
+		// Act
+		Vehiculo moto = new VehiculoTestBuilder().conPlaca("BB343").buildMoto();
+		vigilante.ingresarVehiculo(moto);
+	}
 
 	@Test
 	public void ingresarVehiculoTest() {
