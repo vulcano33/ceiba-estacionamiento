@@ -45,7 +45,6 @@ public class Vigilante {
 	
 	public Factura retirarVehiculo(Vehiculo vehiculo) {
 		Registro registro = parqueadero.retirarVehiculo(vehiculo);
-		registro.setFechaSalida(calendario.obtenerFechaYHoraActual());
 		return this.generarFactura(registro);
 	}
 	

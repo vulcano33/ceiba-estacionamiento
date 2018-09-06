@@ -59,8 +59,10 @@ public class Parqueadero {
 		}
 		
 		this.retirarVehiculoDeCelda(registro);
-
+		
+		registro.setFechaSalida(LocalDateTime.now());
 		registros.remove(registro);
+		// persistir este registro
 		
 		return registro;
 	}
