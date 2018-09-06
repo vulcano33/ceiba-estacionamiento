@@ -43,17 +43,13 @@ public class Vigilante {
 		return ingresoDenegado;
 	}
 	
-	// TODO Determinar si este método sobra, según las reglas del negocio
-	public Registro retirarVehiculo(Vehiculo vehiculo) {
-		return parqueadero.retirarVehiculo(vehiculo);
+	public Factura retirarVehiculo(Vehiculo vehiculo) {
+		Registro registro = parqueadero.retirarVehiculo(vehiculo);
+		registro.setFechaSalida(calendario.obtenerFechaYHoraActual());
+		return this.generarFactura(registro);
 	}
 	
-	public Factura generarFactura(Vehiculo vehiculo) {
-		Registro registro = parqueadero.retirarVehiculo(vehiculo);
-		return this.calcularValorAPagar(registro);
-	}
-
-	private Factura calcularValorAPagar(Registro registro) {
+	private Factura generarFactura(Registro registro) {
 		Factura factura = null;
 		for (Tarifa tarifa : tarifas) {
 			Factura posibleFactura = tarifa.generarFactura(registro, calendario);

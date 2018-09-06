@@ -14,10 +14,16 @@ import java.util.Map;
  */
 public class Calendario {
 
+	public static final String CLAVE_MAPA_DIAS_PERMANENCIA = "dias";
+	public static final String CLAVE_MAPA_HORAS_RESTANTES = "horasRestantes";
 	private static final Integer HORAS_DEL_DIA = 24;
 
 	public DayOfWeek obtenerDiaDeHoy() {
 		return LocalDate.now().getDayOfWeek();
+	}
+	
+	public LocalDateTime obtenerFechaYHoraActual() {
+		return LocalDateTime.now();
 	}
 
 	/**
@@ -28,12 +34,15 @@ public class Calendario {
 	 */
 	public Map<String, Integer> calcularTiempoEntreFechas(LocalDateTime fechaEntrada, LocalDateTime fechaSalida) {
 		
-		Map<String, Integer> tiempoDePermanencia = new HashMap<>(); 
+		Map<String, Integer> tiempoDePermanencia = new HashMap<>();
+
 		Long tiempoPermanenciaEnDias = ChronoUnit.DAYS.between(fechaEntrada, fechaSalida);
 		Long tiempoPermanenciaEnHoras = ChronoUnit.HOURS.between(fechaEntrada, fechaSalida);
 		Long horasRestantes = tiempoPermanenciaEnHoras % HORAS_DEL_DIA;
-		tiempoDePermanencia.put("dias", tiempoPermanenciaEnDias.intValue());
-		tiempoDePermanencia.put("horasRestantes", horasRestantes.intValue());
+		
+		tiempoDePermanencia.put(CLAVE_MAPA_DIAS_PERMANENCIA, tiempoPermanenciaEnDias.intValue());
+		tiempoDePermanencia.put(CLAVE_MAPA_HORAS_RESTANTES, horasRestantes.intValue());
+		
 		return tiempoDePermanencia;
 	}
 }

@@ -58,18 +58,16 @@ public class Parqueadero {
 			throw new ParqueaderoException(REGISTRO_NO_ENCONTRADO);
 		}
 		
-		Celda celdaVehiculo = this.retirarVehiculoDeCelda(registro);
+		this.retirarVehiculoDeCelda(registro);
 
-		celdas.remove(celdaVehiculo);
 		registros.remove(registro);
 		
 		return registro;
 	}
 
-	private Celda retirarVehiculoDeCelda(Registro registro) {
+	private void retirarVehiculoDeCelda(Registro registro) {
 		Celda celdaVehiculo = registro.getCelda(); 
 		celdaVehiculo.retirarVehiculo();
-		return celdaVehiculo;
 	}
 
 	private Registro obtenerRegistroPorPlaca(String placa) {

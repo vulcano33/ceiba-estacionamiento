@@ -24,8 +24,8 @@ public class TarifaCarro extends Tarifa {
 			Map<String, Integer> tiempoPermanecia = calendario.calcularTiempoEntreFechas(registro.getFechaEntrada(),
 					registro.getFechaSalida());
 			
-			Integer diasDePermanencia = tiempoPermanecia.get("dias");
-			Integer horasRestantesPermanencia = tiempoPermanecia.get("horasRestantes");
+			Integer diasDePermanencia = tiempoPermanecia.get(Calendario.CLAVE_MAPA_DIAS_PERMANENCIA);
+			Integer horasRestantesPermanencia = tiempoPermanecia.get(Calendario.CLAVE_MAPA_HORAS_RESTANTES);
 			
 			Integer valorAPagar = 0;
 			if (horasRestantesPermanencia > HORAS_LIMITE_DIA) {
