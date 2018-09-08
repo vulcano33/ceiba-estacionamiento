@@ -6,13 +6,9 @@ public class TarifaCarro extends Tarifa {
 	
 	private static final Integer DIA_ADICIONAL = 1;
 	private static final Integer HORAS_LIMITE_DIA = 9;
-	private Integer valorHora;
-	private Integer valorDia;
 	
-	public TarifaCarro(Integer valorHora, Integer valorDia) {
-		super();
-		this.valorHora = valorHora;
-		this.valorDia = valorDia;
+	public TarifaCarro(Integer valorHora, Integer valorDia, Integer valorAdicionalCC) {
+		super(valorHora, valorDia, valorAdicionalCC);
 	}
 
 	@Override

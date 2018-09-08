@@ -33,7 +33,7 @@ public class TarifaCarroTest {
 	@Before
 	public void prepararDatos() {
 		// Arrange
-		tarifaCarro = new TarifaCarro(VALOR_HORA, VALOR_DIA);
+		tarifaCarro = new TarifaCarro(VALOR_HORA, VALOR_DIA, 0);
 	}
 	
 	@Test

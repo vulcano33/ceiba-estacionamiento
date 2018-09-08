@@ -10,14 +10,14 @@ public interface RepositorioRegistro {
 	 * @param vehiculo
 	 * @return
 	 */
-	Registro ingresarRegistro(Registro registro);
+	void ingresarRegistro(Registro registro);
 	
 	/**
 	 * Permite retirar un registro de un vehiculo del parqueadero
 	 * @param vehiculo
 	 * @return
 	 */
-	Registro retirarRegistro(Registro registro);
+	void retirarRegistro(Registro registro);
 	
 	/**
 	 * Retorna una lista de los registros activos del parqueadero

@@ -2,6 +2,10 @@ package co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio
 
 public class CeldaMoto extends Celda {
 
+	public CeldaMoto(Integer numero) {
+		super(numero);
+	}
+
 	@Override
 	public boolean ingresarVehiculo(Vehiculo vehiculo) {
 		boolean vehiculoIngresado = false;

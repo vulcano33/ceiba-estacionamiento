@@ -6,15 +6,9 @@ public class TarifaMoto extends Tarifa {
 
 	private static final Integer DIA_ADICIONAL = 1;
 	private static final Integer HORAS_LIMITE_DIA = 9;
-	private Integer valorHora;
-	private Integer valorDia;
-	private Integer valorAdicionalCC;
 
 	public TarifaMoto(Integer valorHora, Integer valorDia, Integer valorAdicionalCC) {
-		super();
-		this.valorHora = valorHora;
-		this.valorDia = valorDia;
-		this.valorAdicionalCC = valorAdicionalCC;
+		super(valorHora, valorDia, valorAdicionalCC);
 	}
 
 	private boolean aplicaTarifaMoto500CC(Vehiculo vehiculo) {

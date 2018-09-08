@@ -26,8 +26,8 @@ public class CeldaTest {
 	@Before
 	public void prepararDatos() { 
 		// Arrange
-		celdaCarro = new CeldaCarro();
-		celdaMoto = new CeldaMoto();
+		celdaCarro = new CeldaCarro(1);
+		celdaMoto = new CeldaMoto(2);
 		carro = new VehiculoTestBuilder().conPlaca(PLACA_CARRO).conCilindrajeCC(CILINDRAJE_CARRO).buildCarro();
 		moto = new VehiculoTestBuilder().conPlaca(PLACA_MOTO).conCilindrajeCC(CILINDRAJE_MOTO).buildMoto();
 	}

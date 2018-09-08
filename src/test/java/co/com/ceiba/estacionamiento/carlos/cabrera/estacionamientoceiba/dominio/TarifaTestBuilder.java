@@ -16,11 +16,7 @@ public class TarifaTestBuilder {
 		this.valorAdicional = VALOR_ADICIONAL;
 	}
 
-	public TarifaCarro buildTarifaCarro() {
-		return new TarifaCarro(this.valorHora, this.valorDia);
-	}
-
-	public TarifaMoto buildTarifaMoto() {
+	public TarifaMoto build() {
 		return new TarifaMoto(this.valorHora, this.valorDia, this.valorAdicional);
 	}
 

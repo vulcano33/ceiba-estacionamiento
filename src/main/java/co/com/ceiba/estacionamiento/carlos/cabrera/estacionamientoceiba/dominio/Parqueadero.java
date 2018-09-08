@@ -33,6 +33,7 @@ public class Parqueadero {
 		registros.add(registro);
 	
 		// TODO Persistir el registro de entrada en la BD
+		
 		return registro;
 	}
 
