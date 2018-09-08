@@ -25,11 +25,11 @@ public class TarifaEntidad implements Serializable {
 	@Column(name = "TIPO")
 	private Integer tipo;
 	@Column(name = "VALORHORA")
-	private int valorhora;
+	private int valorHora;
 	@Column(name = "VALORDIA")
-	private int valordia;
+	private int valorDia;
 	@Column(name = "VALORADICIONALCC")
-	private Integer valoradicionalcc;
+	private Integer valorAdicionalCC;
 	@JoinColumn(name = "TIPO", referencedColumnName = "ID", insertable = false, updatable = false)
 	@OneToOne(optional = false)
 	private VehiculoEntidad vehiculoEntidad;
@@ -41,12 +41,6 @@ public class TarifaEntidad implements Serializable {
 		this.tipo = tipo;
 	}
 
-	public TarifaEntidad(Integer tipo, int valorhora, int valordia) {
-		this.tipo = tipo;
-		this.valorhora = valorhora;
-		this.valordia = valordia;
-	}
-
 	public Integer getTipo() {
 		return tipo;
 	}
@@ -55,28 +49,28 @@ public class TarifaEntidad implements Serializable {
 		this.tipo = tipo;
 	}
 
-	public int getValorhora() {
-		return valorhora;
+	public int getValorHora() {
+		return valorHora;
 	}
 
-	public void setValorhora(int valorhora) {
-		this.valorhora = valorhora;
+	public void setValorHora(int valorHora) {
+		this.valorHora = valorHora;
 	}
 
-	public int getValordia() {
-		return valordia;
+	public int getValorDia() {
+		return valorDia;
 	}
 
-	public void setValordia(int valordia) {
-		this.valordia = valordia;
+	public void setValorDia(int valorDia) {
+		this.valorDia = valorDia;
 	}
 
-	public Integer getValoradicionalcc() {
-		return valoradicionalcc;
+	public Integer getValorAdicionalCC() {
+		return valorAdicionalCC;
 	}
 
-	public void setValoradicionalcc(Integer valoradicionalcc) {
-		this.valoradicionalcc = valoradicionalcc;
+	public void setValorAdicionalCC(Integer valorAdicionalCC) {
+		this.valorAdicionalCC = valorAdicionalCC;
 	}
 
 	public VehiculoEntidad getVehiculoEntidad() {
