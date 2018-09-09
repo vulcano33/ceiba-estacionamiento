@@ -14,7 +14,7 @@ public class ConstructorCelda {
 	public static Celda convertirCeldaADominio(CeldaEntidad celdaEntidad) {
 		 Celda celda = null;
 		 
-		 if (celdaEntidad.getTipo().getTipo().equalsIgnoreCase(TipoVehiculo.CARRO.getTipo())) {
+		 if (celdaEntidad.getTipo().getId().equals(TipoVehiculo.CARRO.getId())) {
 			 celda = new CeldaCarro(celdaEntidad.getId());
 		 } else {
 			 celda = new CeldaMoto(celdaEntidad.getId());

@@ -43,7 +43,15 @@ public class DateUtil {
 	}
 	
 	public Date convertirLocalDateTimeADate(LocalDateTime fechaEntrada) {
-		return java.sql.Timestamp.valueOf(fechaEntrada);
+		Date fechaSalida = null;
+		
+		if (fechaEntrada != null) {
+			fechaSalida = java.util.Date
+				      .from(fechaEntrada.atZone(ZoneId.systemDefault())
+				    	      .toInstant()); 
+		}
+		
+		return fechaSalida;
 	}
 	
 	public LocalDateTime convertirDateALocalDateTime(Date fechaEntrada) {

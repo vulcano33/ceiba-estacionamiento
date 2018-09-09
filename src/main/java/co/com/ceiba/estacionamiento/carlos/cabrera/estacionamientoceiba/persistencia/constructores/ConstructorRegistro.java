@@ -16,6 +16,9 @@ import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.persiste
  *
  */
 public class ConstructorRegistro {
+	
+	private ConstructorRegistro() {
+	}
 
 	public static Registro convertirRegistroADominio(RegistroEntidad registroEntidad) {
 
@@ -41,7 +44,7 @@ public class ConstructorRegistro {
 		registroEntidad.setPlaca(registro.getVehiculo().getPlaca());
 		registroEntidad.setCilindrajeCC(registro.getVehiculo().getCilindrajeCC());
 		registroEntidad.setFechaEntrada(fechaEntrada);
-		registroEntidad.setFechaEntrada(fechaSalida);
+		registroEntidad.setFechaSalida(fechaSalida);
 		registroEntidad.setTipo(vehiculoEntidad);
 		registroEntidad.setCelda(celdaEntidad);
 		return registroEntidad; 

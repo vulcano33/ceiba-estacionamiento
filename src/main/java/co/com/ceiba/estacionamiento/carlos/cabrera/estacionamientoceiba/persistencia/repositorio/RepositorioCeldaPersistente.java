@@ -2,11 +2,19 @@ package co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.persist
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.stereotype.Component;
+
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.Celda;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.repositorio.RepositorioCelda;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.persistencia.constructores.ConstructorCelda;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.persistencia.entidades.CeldaEntidad;
 
+/**
+ * @author carlos.cabrera
+ *
+ */
+@Component
 public class RepositorioCeldaPersistente implements RepositorioCelda {
 
 	private RepositorioCeldaJPA repositorioCeldaJPA;

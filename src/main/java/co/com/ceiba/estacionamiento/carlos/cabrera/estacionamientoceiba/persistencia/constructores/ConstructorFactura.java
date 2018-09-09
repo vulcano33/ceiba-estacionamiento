@@ -20,8 +20,7 @@ public class ConstructorFactura {
 
 	public static Factura convertirFacturaADominio(FacturaEntidad facturaEntidad) {
 		Registro registro = ConstructorRegistro.convertirRegistroADominio(facturaEntidad.getRegistro());
-		Factura factura = new Factura(registro, facturaEntidad.getValor());
-		return factura;
+		return new Factura(registro, facturaEntidad.getValor());
 	}
 
 }

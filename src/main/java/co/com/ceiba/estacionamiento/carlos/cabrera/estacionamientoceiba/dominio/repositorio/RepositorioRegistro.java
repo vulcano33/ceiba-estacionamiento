@@ -23,5 +23,5 @@ public interface RepositorioRegistro {
 	 * Retorna una lista de los registros activos del parqueadero
 	 * @return
 	 */
-	List<Registro> listarRegistrosActivos();
+	List<Registro> obtenerRegistrosActivos();
 }

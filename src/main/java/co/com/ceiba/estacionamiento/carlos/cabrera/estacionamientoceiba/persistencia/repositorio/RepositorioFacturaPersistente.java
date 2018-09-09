@@ -5,6 +5,8 @@ package co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.persist
 
 import java.util.Optional;
 
+import org.springframework.stereotype.Component;
+
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.Factura;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.repositorio.RepositorioFactura;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.persistencia.constructores.ConstructorFactura;
@@ -14,6 +16,7 @@ import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.persiste
  * @author carlos.cabrera
  *
  */
+@Component
 public class RepositorioFacturaPersistente implements RepositorioFactura {
 	
 	private RepositorioFacturaJPA repositorioFacturaJPA;

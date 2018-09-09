@@ -10,6 +10,10 @@ import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.persistencia.constructores.ConstructorRegistro;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.persistencia.entidades.RegistroEntidad;
 
+/**
+ * @author carlos.cabrera
+ *
+ */
 @Component
 public class RepositorioRegistroPersistente implements RepositorioRegistro {
 
@@ -32,12 +36,15 @@ public class RepositorioRegistroPersistente implements RepositorioRegistro {
 	}
 
 	@Override
-	public List<Registro> listarRegistrosActivos() {
+	public List<Registro> obtenerRegistrosActivos() {
 		
 		List<Registro> registros = new ArrayList<>();
+		
 		for (RegistroEntidad registroEntidad : repositorioRegistroJPA.findAll()) {
-			Registro registro = ConstructorRegistro.convertirRegistroADominio(registroEntidad);
-			registros.add(registro);
+			if (registroEntidad != null) {
+				Registro registro = ConstructorRegistro.convertirRegistroADominio(registroEntidad);
+				registros.add(registro);
+			}
 		}
 		return registros;
 	}
