@@ -1,8 +1,10 @@
 package co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.controlador;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.Vehiculo;
@@ -17,6 +19,7 @@ public class ParqueaderoControlador {
 	private ParqueaderoServicio parqueaderoServicio;
 
 	@PostMapping("/registros")
+	@ResponseStatus(HttpStatus.CREATED)
 	void ingresarRegistro(@RequestBody RegistroVehiculo registroVehiculo) {
 
 		Vehiculo vehiculo = ConstructorRegistroServicio.convertirRegistroServicio(registroVehiculo);

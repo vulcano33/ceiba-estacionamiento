@@ -27,6 +27,8 @@ public class ConstructorRegistro {
 
 		Celda celda = ConstructorCelda.convertirCeldaADominio(registroEntidad.getCelda());
 		
+		celda.ingresarVehiculo(vehiculo);
+		
 		LocalDateTime fechaEntrada = DateUtil.getInstance().convertirDateALocalDateTime(registroEntidad.getFechaEntrada());
 
 		return new Registro(fechaEntrada, vehiculo, celda);
