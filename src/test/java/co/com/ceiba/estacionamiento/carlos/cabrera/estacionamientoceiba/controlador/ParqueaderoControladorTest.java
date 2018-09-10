@@ -69,6 +69,7 @@ public class ParqueaderoControladorTest {
 		assertThat(response.getStatusCode(), is(HttpStatus.CREATED));
 	}
 
+	@Ignore
 	@Test
 	public void retirarVehiculo() {
 		RegistroVehiculo registroSalida = new RegistroVehiculoTestBuilder()
