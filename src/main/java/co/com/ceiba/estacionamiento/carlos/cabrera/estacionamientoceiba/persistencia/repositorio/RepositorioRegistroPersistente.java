@@ -1,6 +1,7 @@
 package co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.persistencia.repositorio;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -9,6 +10,7 @@ import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.repositorio.RepositorioRegistro;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.persistencia.constructores.ConstructorRegistro;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.persistencia.entidades.RegistroEntidad;
+import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.persistencia.util.DateUtil;
 
 /**
  * @author carlos.cabrera
@@ -31,7 +33,9 @@ public class RepositorioRegistroPersistente implements RepositorioRegistro {
 
 	@Override
 	public void retirarRegistro(Registro registro) {
-		RegistroEntidad registroEntidad = ConstructorRegistro.convertirRegistroAEntidad(registro);
+		RegistroEntidad registroEntidad = repositorioRegistroJPA.findByPlaca(registro.getVehiculo().getPlaca());
+		Date fechaSalida = DateUtil.getInstance().convertirLocalDateTimeADate(registro.getFechaSalida());
+		registroEntidad.setFechaSalida(fechaSalida);
 		repositorioRegistroJPA.save(registroEntidad);
 	}
 
