@@ -14,6 +14,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'jacoco'
 
 group = 'co.com.ceiba.estacionamiento.carlos.cabrera'
 version = '0.0.1-SNAPSHOT'
@@ -32,3 +33,12 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile "org.mockito:mockito-core:2.+"
 }
+
+test {
+jacoco {
+append = false
+destinationFile = file("build/jacoco/jacocoTest.exec")
+}
+reports.junitXml.destination = file ("build/test-results")
+}
+jacocoTestReport.dependsOn(test)

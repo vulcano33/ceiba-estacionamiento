@@ -57,37 +57,37 @@ public class ParqueaderoControladorTest {
 		assertThat(name.asText(), notNullValue());
 	}
 
-	@Ignore
-	@Test
-	public void ingresarVehiculo() {
-		RegistroVehiculo registroVehiculo = new RegistroVehiculoTestBuilder()
-				.conTipoVehiculo(TipoVehiculo.CARRO.getTipo()).conPlaca(NUMERO_PLACA).conCilindrajeCC(CILINDRAJECC).build();
-		ResponseEntity<RegistroVehiculo> response = testRestTemplate.postForEntity(SERVICIO_PARQUEADERO_URL,
-				registroVehiculo, RegistroVehiculo.class);
-
-		assertThat(response.getStatusCode(), is(HttpStatus.CREATED));
-	}
-
-	@Ignore
-	@Test
-	public void retirarVehiculo() {
-		RegistroVehiculo registroSalida = new RegistroVehiculoTestBuilder()
-				.conTipoVehiculo(TipoVehiculo.CARRO.getTipo()).conPlaca(NUMERO_PLACA).conCilindrajeCC(CILINDRAJECC)
-				.conFechaEntrada(SEPT_9_7_AM).build();
-
-		RestTemplate restTemplate = new RestTemplate();
-		restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-
-		HttpHeaders headers = new HttpHeaders();
-		Map<String, String> param = new HashMap<String, String>();
-		param.put(PLACA, NUMERO_PLACA);
-		HttpEntity<RegistroVehiculo> requestEntity = new HttpEntity<RegistroVehiculo>(registroSalida, headers);
-		HttpEntity<RegistroVehiculo> response = restTemplate.exchange(SERVICIO_PARQUEADERO_URL, HttpMethod.PUT,
-				requestEntity, RegistroVehiculo.class, param);
-		
-		RegistroVehiculo registroVehiculoObtenido = response.getBody();
-		assertTrue(registroVehiculoObtenido.getPlaca().equals(registroSalida.getPlaca()));
-	}
+//	@Ignore
+//	@Test
+//	public void ingresarVehiculo() {
+//		RegistroVehiculo registroVehiculo = new RegistroVehiculoTestBuilder()
+//				.conTipoVehiculo(TipoVehiculo.CARRO.getTipo()).conPlaca(NUMERO_PLACA).conCilindrajeCC(CILINDRAJECC).build();
+//		ResponseEntity<RegistroVehiculo> response = testRestTemplate.postForEntity(SERVICIO_PARQUEADERO_URL,
+//				registroVehiculo, RegistroVehiculo.class);
+//
+//		assertThat(response.getStatusCode(), is(HttpStatus.CREATED));
+//	}
+//
+//	@Ignore
+//	@Test
+//	public void retirarVehiculo() {
+//		RegistroVehiculo registroSalida = new RegistroVehiculoTestBuilder()
+//				.conTipoVehiculo(TipoVehiculo.CARRO.getTipo()).conPlaca(NUMERO_PLACA).conCilindrajeCC(CILINDRAJECC)
+//				.conFechaEntrada(SEPT_9_7_AM).build();
+//
+//		RestTemplate restTemplate = new RestTemplate();
+//		restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+//
+//		HttpHeaders headers = new HttpHeaders();
+//		Map<String, String> param = new HashMap<String, String>();
+//		param.put(PLACA, NUMERO_PLACA);
+//		HttpEntity<RegistroVehiculo> requestEntity = new HttpEntity<RegistroVehiculo>(registroSalida, headers);
+//		HttpEntity<RegistroVehiculo> response = restTemplate.exchange(SERVICIO_PARQUEADERO_URL, HttpMethod.PUT,
+//				requestEntity, RegistroVehiculo.class, param);
+//		
+//		RegistroVehiculo registroVehiculoObtenido = response.getBody();
+//		assertTrue(registroVehiculoObtenido.getPlaca().equals(registroSalida.getPlaca()));
+//	}
 
 	@TestConfiguration
 	static class Config {
