@@ -12,7 +12,6 @@ import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.Calendario;
@@ -94,7 +93,6 @@ public class VigilanteDominioTest {
 		Assert.assertEquals(vehiculo.getPlaca(), registro.getVehiculo().getPlaca());
 	}
 	
-	@Ignore
 	@Test(expected = ParqueaderoException.class)
 	public void ingresarVehiculoYNoHayCuposTest() {
 		// Arrange
@@ -114,7 +112,6 @@ public class VigilanteDominioTest {
 		vigilante.ingresarVehiculo(moto);
 	}
 
-	@Ignore
 	@Test(expected = ParqueaderoException.class)
 	public void ingresarVPlacaANoDomingoOLunesTest() {
 		// Arrange
@@ -132,7 +129,6 @@ public class VigilanteDominioTest {
 
 	}
 
-	@Ignore
 	@Test
 	public void ingresarVPlacaADomingoTest() {
 		// Arrange
@@ -152,7 +148,6 @@ public class VigilanteDominioTest {
 		Assert.assertEquals(vehiculo.getPlaca(), registro.getVehiculo().getPlaca());
 	}
 
-	@Ignore
 	@Test
 	public void ingresarVPlacaALunesTest() {
 		// Arrange
@@ -173,7 +168,6 @@ public class VigilanteDominioTest {
 
 	}
 
-	@Ignore
 	@Test(expected = ParqueaderoException.class)
 	public void ingresarVehiculoYaExistenteTest() {
 		// Arrange
@@ -194,7 +188,6 @@ public class VigilanteDominioTest {
 
 	}
 
-	@Ignore
 	@Test(expected = ParqueaderoException.class)
 	public void retirarVehiculoQueNoExisteTest() {
 		// Arrange
@@ -211,9 +204,114 @@ public class VigilanteDominioTest {
 		vigilante.retirarVehiculo(vehiculo);
 	}
 	
-	@Ignore
 	@Test
 	public void retirarVehiculoCarroTest() {
+		Parqueadero parqueadero = new Parqueadero(celdas, registros);
+		
+		Calendario calendario = mock(Calendario.class);
+		when(calendario.obtenerDiaDeHoy()).thenReturn(DayOfWeek.TUESDAY);
+		
+		Vigilante vigilante = new Vigilante(parqueadero, calendario, tarifas);
+		Vehiculo vehiculo = new VehiculoTestBuilder().buildCarro();
+		
+		Registro registro = vigilante.ingresarVehiculo(vehiculo);
+		Assert.assertEquals(vehiculo.getPlaca(), registro.getVehiculo().getPlaca());
+		
+		// Act
+		Registro registroSalida = vigilante.retirarVehiculo(vehiculo);
+		Assert.assertEquals(registro.getVehiculo().getPlaca(), registroSalida.getVehiculo().getPlaca());
+		Assert.assertNotNull(registroSalida.getFechaSalida());
+	}
+
+	@Test
+	public void retirarVehiculoMotoTest() {
+		Parqueadero parqueadero = new Parqueadero(celdas, registros);
+
+		Calendario calendario = mock(Calendario.class);
+		when(calendario.obtenerDiaDeHoy()).thenReturn(DayOfWeek.TUESDAY);
+
+		Vigilante vigilante = new Vigilante(parqueadero, calendario, tarifas);
+
+		Vehiculo moto = new VehiculoTestBuilder().buildMoto();
+
+		Registro registro = vigilante.ingresarVehiculo(moto);
+		Assert.assertEquals(moto.getPlaca(), registro.getVehiculo().getPlaca());
+
+		Registro registroSalida = vigilante.retirarVehiculo(moto);
+		Assert.assertEquals(registro.getVehiculo().getPlaca(), registroSalida.getVehiculo().getPlaca());
+		Assert.assertNotNull(registroSalida.getFechaSalida());
+	}
+	
+	@Test
+	public void generarFacturaMotoMayor500CCTest() {
+		Parqueadero parqueadero = new Parqueadero(celdas, registros);
+
+		Calendario calendario = mock(Calendario.class);
+		when(calendario.obtenerDiaDeHoy()).thenReturn(DayOfWeek.TUESDAY);
+
+		Map<String, Integer> tiempoPermaneciaSimulado = new HashMap<>();
+		tiempoPermaneciaSimulado.put(Calendario.CLAVE_MAPA_DIAS_PERMANENCIA, DIAS_PERMANENCIA);
+		tiempoPermaneciaSimulado.put(Calendario.CLAVE_MAPA_HORAS_RESTANTES, HORAS_RESTANTES_SUPERIOR_AL_LIMITE);
+		when(calendario.calcularTiempoEntreFechas(any(), any())).thenReturn(tiempoPermaneciaSimulado);
+
+		Vigilante vigilante = new Vigilante(parqueadero, calendario, tarifas);
+
+		Vehiculo moto = new VehiculoTestBuilder().conCilindrajeCC(CILINDRAJE_MAYOR_500CC).buildMoto();
+
+		Registro registro = vigilante.ingresarVehiculo(moto);
+		Assert.assertEquals(moto.getPlaca(), registro.getVehiculo().getPlaca());
+		
+		Registro registroSalida = vigilante.retirarVehiculo(moto);
+		Assert.assertEquals(registro.getVehiculo().getPlaca(), registroSalida.getVehiculo().getPlaca());
+		Assert.assertNotNull(registroSalida.getFechaSalida());
+
+		// Act
+		Factura factura = vigilante.generarFactura(registroSalida);
+		Assert.assertEquals(registro.getVehiculo().getPlaca(), factura.getRegistro().getVehiculo().getPlaca());
+
+		Integer diasPermanenciaTotales = tiempoPermaneciaSimulado.get(Calendario.CLAVE_MAPA_DIAS_PERMANENCIA)
+				+ DIA_ADICIONAL;
+		Integer valorAPagarEsperado = (diasPermanenciaTotales * VALOR_DIA_MOTO) + VALOR_ADICIONAL_MOTO_MAYOR_500CC;
+
+		Assert.assertEquals(valorAPagarEsperado, factura.getValorAPagar());
+	}
+	
+	@Test
+	public void generarFacturaMotoMenor500CCTest() {
+		Parqueadero parqueadero = new Parqueadero(celdas, registros);
+
+		Calendario calendario = mock(Calendario.class);
+		when(calendario.obtenerDiaDeHoy()).thenReturn(DayOfWeek.TUESDAY);
+		
+		Map<String, Integer> tiempoPermaneciaSimulado = new HashMap<>();
+		tiempoPermaneciaSimulado.put(Calendario.CLAVE_MAPA_DIAS_PERMANENCIA, DIAS_PERMANENCIA);
+		tiempoPermaneciaSimulado.put(Calendario.CLAVE_MAPA_HORAS_RESTANTES, HORAS_RESTANTES_SUPERIOR_AL_LIMITE);
+		when(calendario.calcularTiempoEntreFechas(any(), any())).thenReturn(tiempoPermaneciaSimulado);
+
+		Vigilante vigilante = new Vigilante(parqueadero, calendario, tarifas);
+
+		Vehiculo moto = new VehiculoTestBuilder().conCilindrajeCC(CILINDRAJE_MENOR_500CC).buildMoto();
+
+		Registro registro = vigilante.ingresarVehiculo(moto);
+		Assert.assertEquals(moto.getPlaca(), registro.getVehiculo().getPlaca());
+
+		Registro registroSalida = vigilante.retirarVehiculo(moto);
+		Assert.assertEquals(registro.getVehiculo().getPlaca(), registroSalida.getVehiculo().getPlaca());
+		Assert.assertNotNull(registroSalida.getFechaSalida());
+
+		// Act
+		Factura factura = vigilante.generarFactura(registroSalida);
+		Assert.assertEquals(registro.getVehiculo().getPlaca(), factura.getRegistro().getVehiculo().getPlaca());
+
+		Integer diasPermanenciaTotales = tiempoPermaneciaSimulado.get(Calendario.CLAVE_MAPA_DIAS_PERMANENCIA)
+				+ DIA_ADICIONAL;
+		Integer valorAPagarEsperado = (diasPermanenciaTotales * VALOR_DIA_MOTO);
+
+		Assert.assertEquals(valorAPagarEsperado, factura.getValorAPagar());
+	}
+	
+	@Test
+	public void generarFacturaVehiculoCarroTest() {
 		Parqueadero parqueadero = new Parqueadero(celdas, registros);
 		
 		Calendario calendario = mock(Calendario.class);
@@ -231,76 +329,16 @@ public class VigilanteDominioTest {
 		Registro registro = vigilante.ingresarVehiculo(vehiculo);
 		Assert.assertEquals(vehiculo.getPlaca(), registro.getVehiculo().getPlaca());
 		
-		// Act
-		Factura factura = vigilante.retirarVehiculo(vehiculo);
-		Assert.assertEquals(registro.getVehiculo().getPlaca(), factura.getRegistro().getVehiculo().getPlaca());
+		Registro registroSalida = vigilante.retirarVehiculo(vehiculo);
+		Assert.assertEquals(registro.getVehiculo().getPlaca(), registroSalida.getVehiculo().getPlaca());
+		Assert.assertNotNull(registroSalida.getFechaSalida());
 		
+		// Act
+		Factura factura = vigilante.generarFactura(registroSalida);
 		Integer diasPermanenciaTotales = tiempoPermaneciaSimulado.get(Calendario.CLAVE_MAPA_DIAS_PERMANENCIA)
 				+ DIA_ADICIONAL;
 		Integer valorAPagarEsperado = diasPermanenciaTotales * VALOR_DIA_CARRO;
 		
-		Assert.assertEquals(valorAPagarEsperado, factura.getValorAPagar());
-	}
-
-	@Ignore
-	@Test
-	public void retirarMotoMenos500CCTest() {
-		Parqueadero parqueadero = new Parqueadero(celdas, registros);
-
-		Calendario calendario = mock(Calendario.class);
-		when(calendario.obtenerDiaDeHoy()).thenReturn(DayOfWeek.TUESDAY);
-
-		Map<String, Integer> tiempoPermaneciaSimulado = new HashMap<>();
-		tiempoPermaneciaSimulado.put(Calendario.CLAVE_MAPA_DIAS_PERMANENCIA, DIAS_PERMANENCIA);
-		tiempoPermaneciaSimulado.put(Calendario.CLAVE_MAPA_HORAS_RESTANTES, HORAS_RESTANTES_SUPERIOR_AL_LIMITE);
-		when(calendario.calcularTiempoEntreFechas(any(), any())).thenReturn(tiempoPermaneciaSimulado);
-
-		Vigilante vigilante = new Vigilante(parqueadero, calendario, tarifas);
-
-		Vehiculo moto = new VehiculoTestBuilder().conCilindrajeCC(CILINDRAJE_MENOR_500CC).buildMoto();
-
-		Registro registro = vigilante.ingresarVehiculo(moto);
-		Assert.assertEquals(moto.getPlaca(), registro.getVehiculo().getPlaca());
-
-		// Act
-		Factura factura = vigilante.retirarVehiculo(moto);
-		Assert.assertEquals(registro.getVehiculo().getPlaca(), factura.getRegistro().getVehiculo().getPlaca());
-
-		Integer diasPermanenciaTotales = tiempoPermaneciaSimulado.get(Calendario.CLAVE_MAPA_DIAS_PERMANENCIA)
-				+ DIA_ADICIONAL;
-		Integer valorAPagarEsperado = diasPermanenciaTotales * VALOR_DIA_MOTO;
-
-		Assert.assertEquals(valorAPagarEsperado, factura.getValorAPagar());
-	}
-	
-	@Ignore
-	@Test
-	public void retirarMotoMayor500CCTest() {
-		Parqueadero parqueadero = new Parqueadero(celdas, registros);
-
-		Calendario calendario = mock(Calendario.class);
-		when(calendario.obtenerDiaDeHoy()).thenReturn(DayOfWeek.TUESDAY);
-
-		Map<String, Integer> tiempoPermaneciaSimulado = new HashMap<>();
-		tiempoPermaneciaSimulado.put(Calendario.CLAVE_MAPA_DIAS_PERMANENCIA, DIAS_PERMANENCIA);
-		tiempoPermaneciaSimulado.put(Calendario.CLAVE_MAPA_HORAS_RESTANTES, HORAS_RESTANTES_SUPERIOR_AL_LIMITE);
-		when(calendario.calcularTiempoEntreFechas(any(), any())).thenReturn(tiempoPermaneciaSimulado);
-
-		Vigilante vigilante = new Vigilante(parqueadero, calendario, tarifas);
-
-		Vehiculo moto = new VehiculoTestBuilder().conCilindrajeCC(CILINDRAJE_MAYOR_500CC).buildMoto();
-
-		Registro registro = vigilante.ingresarVehiculo(moto);
-		Assert.assertEquals(moto.getPlaca(), registro.getVehiculo().getPlaca());
-
-		// Act
-		Factura factura = vigilante.retirarVehiculo(moto);
-		Assert.assertEquals(registro.getVehiculo().getPlaca(), factura.getRegistro().getVehiculo().getPlaca());
-
-		Integer diasPermanenciaTotales = tiempoPermaneciaSimulado.get(Calendario.CLAVE_MAPA_DIAS_PERMANENCIA)
-				+ DIA_ADICIONAL;
-		Integer valorAPagarEsperado = (diasPermanenciaTotales * VALOR_DIA_MOTO) + VALOR_ADICIONAL_MOTO_MAYOR_500CC;
-
 		Assert.assertEquals(valorAPagarEsperado, factura.getValorAPagar());
 	}
 }

@@ -43,12 +43,11 @@ public class Vigilante {
 		return ingresoDenegado;
 	}
 	
-	public Factura retirarVehiculo(Vehiculo vehiculo) {
-		Registro registro = parqueadero.retirarVehiculo(vehiculo);
-		return this.generarFactura(registro);
+	public Registro retirarVehiculo(Vehiculo vehiculo) {
+		return parqueadero.retirarVehiculo(vehiculo);
 	}
 	
-	private Factura generarFactura(Registro registro) {
+	public Factura generarFactura(Registro registro) {
 		Factura factura = null;
 		for (Tarifa tarifa : tarifas) {
 			Factura posibleFactura = tarifa.generarFactura(registro, calendario);
