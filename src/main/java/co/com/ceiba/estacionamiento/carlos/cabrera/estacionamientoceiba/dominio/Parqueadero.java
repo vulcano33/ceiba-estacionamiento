@@ -32,8 +32,6 @@ public class Parqueadero {
 		Registro registro = new Registro(LocalDateTime.now(), vehiculo, celdaVehiculo);
 		registros.add(registro);
 	
-		// TODO Persistir el registro de entrada en la BD
-		
 		return registro;
 	}
 
@@ -63,7 +61,6 @@ public class Parqueadero {
 		
 		registro.setFechaSalida(LocalDateTime.now());
 		registros.remove(registro);
-		// persistir este registro
 		
 		return registro;
 	}
