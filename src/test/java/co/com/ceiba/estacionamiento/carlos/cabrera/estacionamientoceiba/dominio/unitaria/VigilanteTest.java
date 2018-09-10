@@ -47,7 +47,7 @@ public class VigilanteTest {
 	}
 
 	@Test
-	public void ingresaarVehiculoPlacaADomingo() {
+	public void ingresarVehiculoPlacaADomingo() {
 
 		// Arrange
 		Vehiculo vehiculo = new VehiculoTestBuilder().conPlaca(PLACA_EMPIEZA_POR_A).buildCarro();
