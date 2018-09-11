@@ -7,6 +7,10 @@ import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.persistencia.util.TipoVehiculo;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.servicio.RegistroVehiculo;
 
+/**
+ * @author carlos.cabrera
+ *
+ */
 public class ConstructorRegistroDominio {
 
 	private ConstructorRegistroDominio() {

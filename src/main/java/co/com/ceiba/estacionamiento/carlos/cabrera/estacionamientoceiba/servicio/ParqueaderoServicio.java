@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.servicio.interfaces.ServicioRegistroVehiculo;
 
+/**
+ * @author carlos.cabrera
+ *
+ */
 @Component
 @Service
 public class ParqueaderoServicio {

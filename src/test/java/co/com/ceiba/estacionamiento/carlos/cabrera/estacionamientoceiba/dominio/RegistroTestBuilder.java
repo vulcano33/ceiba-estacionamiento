@@ -3,6 +3,10 @@ package co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio
 import java.time.LocalDateTime;
 import java.time.Month;
 
+/**
+ * @author carlos.cabrera
+ *
+ */
 public class RegistroTestBuilder {
 	private static final LocalDateTime FECHA_ENTRADA = LocalDateTime.of(2018, Month.SEPTEMBER, 22, 8, 00);
 

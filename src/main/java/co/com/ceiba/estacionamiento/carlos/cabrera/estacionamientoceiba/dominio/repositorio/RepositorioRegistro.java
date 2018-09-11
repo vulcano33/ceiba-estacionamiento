@@ -3,6 +3,10 @@ package co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio
 import java.util.List;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.Registro;
 
+/**
+ * @author carlos.cabrera
+ *
+ */
 public interface RepositorioRegistro {
 	
 	/**

@@ -29,6 +29,10 @@ import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.Vigilante;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.excepcion.ParqueaderoException;
 
+/**
+ * @author carlos.cabrera
+ *
+ */
 public class VigilanteDominioTest {
 
 	private static final int NUMERO_DE_CELDAS_DE_MOTOS = 10;

@@ -19,6 +19,10 @@ import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.Vehiculo;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.VehiculoTestBuilder;
 
+/**
+ * @author carlos.cabrera
+ *
+ */
 public class TarifaMotoTest {
 
 	private static final Integer VALOR_HORA = 500;

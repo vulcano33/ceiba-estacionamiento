@@ -1,5 +1,9 @@
 package co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio;
 
+/**
+ * @author carlos.cabrera
+ *
+ */
 public class Factura {
 	private Registro registro;
 	private Integer valorAPagar;

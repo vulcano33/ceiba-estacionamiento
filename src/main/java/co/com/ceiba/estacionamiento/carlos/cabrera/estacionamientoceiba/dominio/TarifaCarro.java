@@ -2,6 +2,10 @@ package co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio
 
 import java.util.Map;
 
+/**
+ * @author carlos.cabrera
+ *
+ */
 public class TarifaCarro extends Tarifa {
 	
 	private static final Integer DIA_ADICIONAL = 1;

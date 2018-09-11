@@ -2,6 +2,10 @@ package co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio
 
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.Factura;
 
+/**
+ * @author carlos.cabrera
+ *
+ */
 public interface RepositorioFactura {
 	
 	public void ingresarFactura(Factura factura);

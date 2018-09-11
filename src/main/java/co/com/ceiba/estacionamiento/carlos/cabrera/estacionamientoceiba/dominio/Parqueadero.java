@@ -6,6 +6,10 @@ import java.util.List;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.excepcion.ParqueaderoException;
 
 	
+/**
+ * @author carlos.cabrera
+ *
+ */
 public class Parqueadero {
 	public static final String NO_HAY_CUPOS_PARA_VEHICULOS = "Ya no hay cupos disponibles para vehiculos";
 	public static final String REGISTRO_NO_ENCONTRADO = "No se encontró un registro asociado a la placa";

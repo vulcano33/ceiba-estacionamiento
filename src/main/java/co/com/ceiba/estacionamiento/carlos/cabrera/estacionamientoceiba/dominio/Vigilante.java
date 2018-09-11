@@ -5,6 +5,10 @@ import java.util.List;
 
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.excepcion.ParqueaderoException;
 
+/**
+ * @author carlos.cabrera
+ *
+ */
 public class Vigilante {
 	
 	public static final String NO_ESTA_AUTORIZADO_A_INGRESAR = "El vehículo no está autorizado a ingresar";

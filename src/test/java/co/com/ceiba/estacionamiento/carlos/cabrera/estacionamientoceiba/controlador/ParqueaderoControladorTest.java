@@ -52,10 +52,10 @@ public class ParqueaderoControladorTest {
 
 	@Test
 	public void ingresarVehiculo() {
-		this.probarIngresoVehiculo();
+		this.ingresarVehiculoCorrectamente();
 	}
 
-	private void probarIngresoVehiculo() {
+	private void ingresarVehiculoCorrectamente() {
 
 		RegistroVehiculo registroVehiculo = new RegistroVehiculoTestBuilder()
 				.conTipoVehiculo(TipoVehiculo.CARRO.getTipo()).conPlaca(NUMERO_PLACA).conCilindrajeCC(CILINDRAJECC)
@@ -69,7 +69,7 @@ public class ParqueaderoControladorTest {
 	@Test
 	public void retirarVehiculo() {
 
-		this.probarIngresoVehiculo();
+		this.ingresarVehiculoCorrectamente();
 
 		RegistroVehiculo registroSalida = new RegistroVehiculoTestBuilder()
 				.conTipoVehiculo(TipoVehiculo.CARRO.getTipo()).conPlaca(NUMERO_PLACA).build();
@@ -84,5 +84,4 @@ public class ParqueaderoControladorTest {
 		Assert.assertTrue(registroVehiculoObtenido.getPlaca().equals(registroSalida.getPlaca()));
 
 	}
-
 }

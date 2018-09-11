@@ -6,6 +6,10 @@ import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.persistencia.entidades.CeldaEntidad;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.persistencia.util.TipoVehiculo;
 
+/**
+ * @author carlos.cabrera
+ *
+ */
 public class ConstructorCelda {
 	
 	private ConstructorCelda() {

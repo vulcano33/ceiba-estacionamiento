@@ -1,5 +1,9 @@
 package co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.persistencia.util;
 
+/**
+ * @author carlos.cabrera
+ *
+ */
 public enum TipoVehiculo {
 	
 	CARRO("CARRO", 1),

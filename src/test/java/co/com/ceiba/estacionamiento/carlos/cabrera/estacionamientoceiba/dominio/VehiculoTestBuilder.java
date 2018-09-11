@@ -3,6 +3,10 @@ package co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.Carro;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.Moto;
 
+/**
+ * @author carlos.cabrera
+ *
+ */
 public class VehiculoTestBuilder {
 	
 	private static final String PLACA = "QET443";

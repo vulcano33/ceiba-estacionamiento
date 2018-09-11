@@ -1,5 +1,9 @@
 package co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio;
 
+/**
+ * @author carlos.cabrera
+ *
+ */
 public class TarifaTestBuilder {
 
 	private static final Integer VALOR_HORA = 500;

@@ -5,6 +5,10 @@ import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.persistencia.entidades.FacturaEntidad;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.persistencia.entidades.RegistroEntidad;
 
+/**
+ * @author carlos.cabrera
+ *
+ */
 public class ConstructorFactura {
 	
 	private ConstructorFactura() {

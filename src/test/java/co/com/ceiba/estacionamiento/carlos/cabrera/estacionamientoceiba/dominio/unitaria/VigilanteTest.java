@@ -24,6 +24,10 @@ import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.
  * @author carlos.cabrera
  *
  */
+/**
+ * @author carlos.cabrera
+ *
+ */
 public class VigilanteTest {
 
 	private static final String PLACA_EMPIEZA_POR_A = "AET443";

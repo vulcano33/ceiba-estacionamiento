@@ -2,6 +2,10 @@ package co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio
 
 import java.time.LocalDateTime;
 
+/**
+ * @author carlos.cabrera
+ *
+ */
 public class Registro {
 	
 	private LocalDateTime fechaEntrada;

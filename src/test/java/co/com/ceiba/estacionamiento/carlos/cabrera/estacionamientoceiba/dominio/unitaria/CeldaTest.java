@@ -12,6 +12,10 @@ import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.Vehiculo;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.VehiculoTestBuilder;
 
+/**
+ * @author carlos.cabrera
+ *
+ */
 public class CeldaTest {
 	
 	private static final String PLACA_CARRO = "QET443";
