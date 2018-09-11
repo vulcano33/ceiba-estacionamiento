@@ -30,7 +30,7 @@ public class CeldaEntidad implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "celda")
 	private Collection<RegistroEntidad> registroEntidadCollection;
 	@JoinColumn(name = "TIPO", referencedColumnName = "ID")
-	@ManyToOne(optional = false)
+	@ManyToOne
 	private VehiculoEntidad tipo;
 
 	public CeldaEntidad() {

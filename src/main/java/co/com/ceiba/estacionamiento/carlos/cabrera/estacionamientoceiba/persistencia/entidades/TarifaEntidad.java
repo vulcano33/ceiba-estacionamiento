@@ -31,7 +31,7 @@ public class TarifaEntidad implements Serializable {
 	@Column(name = "VALORADICIONALCC")
 	private Integer valorAdicionalCC;
 	@JoinColumn(name = "TIPO", referencedColumnName = "ID", insertable = false, updatable = false)
-	@OneToOne(optional = false)
+	@OneToOne
 	private VehiculoEntidad vehiculoEntidad;
 
 	public TarifaEntidad() {

@@ -40,10 +40,10 @@ public class RegistroEntidad implements Serializable {
 	@Column(name = "FECHASALIDA")
 	private Date fechaSalida;
 	@JoinColumn(name = "CELDA", referencedColumnName = "ID")
-	@ManyToOne(optional = false)
+	@ManyToOne
 	private CeldaEntidad celda;
 	@JoinColumn(name = "TIPO", referencedColumnName = "ID")
-	@ManyToOne(optional = false)
+	@ManyToOne
 	private VehiculoEntidad tipo;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "registro")
 	private Collection<FacturaEntidad> facturaEntidadCollection;

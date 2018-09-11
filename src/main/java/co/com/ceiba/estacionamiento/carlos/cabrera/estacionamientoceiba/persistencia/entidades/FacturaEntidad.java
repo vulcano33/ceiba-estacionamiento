@@ -30,7 +30,7 @@ public class FacturaEntidad implements Serializable {
 	@Column(name = "VALOR")
 	private Integer valor;
 	@JoinColumn(name = "REGISTRO", referencedColumnName = "ID")
-	@ManyToOne(optional = false)
+	@ManyToOne
 	private RegistroEntidad registro;
 
 	public FacturaEntidad() {
