@@ -18,8 +18,8 @@ public class ParqueaderoServicio {
 	@Autowired
 	private ServicioRegistroVehiculo servicioRegistroVehiculo;
 
-	public void ingresarVehiculo(RegistroVehiculo registroVehiculo) {
-		servicioRegistroVehiculo.ingresarRegistro(registroVehiculo);
+	public RegistroVehiculo ingresarVehiculo(RegistroVehiculo registroVehiculo) {
+		return servicioRegistroVehiculo.ingresarRegistro(registroVehiculo);
 	}
 	
 	public RegistroVehiculo retirarVehiculo(RegistroVehiculo registroVehiculo) {

@@ -58,7 +58,7 @@ public class Parqueadero {
 		Registro registro = this.obtenerRegistroPorPlaca(vehiculo.getPlaca());
 		
 		if (registro == null) {
-			throw new ParqueaderoException(REGISTRO_NO_ENCONTRADO);
+			throw new ParqueaderoException(REGISTRO_NO_ENCONTRADO + " placa: " + vehiculo.getPlaca());
 		}
 		
 		this.retirarVehiculoDeCelda(registro);

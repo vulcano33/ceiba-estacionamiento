@@ -14,5 +14,5 @@ public interface ServicioRegistroVehiculo {
 	
 	public RegistroVehiculo retirarRegistro(RegistroVehiculo registroVehiculo);
 	
-	public void ingresarRegistro(RegistroVehiculo registroVehiculo);
+	public RegistroVehiculo ingresarRegistro(RegistroVehiculo registroVehiculo);
 }

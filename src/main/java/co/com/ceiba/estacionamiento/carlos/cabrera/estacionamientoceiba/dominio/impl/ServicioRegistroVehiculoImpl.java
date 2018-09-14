@@ -2,6 +2,7 @@ package co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,6 +11,7 @@ import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.Vehiculo;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.Vigilante;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.constructores.ConstructorRegistroDominio;
+import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.repositorio.RepositorioFactura;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.repositorio.RepositorioRegistro;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.servicio.ParqueaderoConfiguracion;
 import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.servicio.RegistroVehiculo;
@@ -24,6 +26,9 @@ public class ServicioRegistroVehiculoImpl implements ServicioRegistroVehiculo {
 
 	@Autowired
 	private RepositorioRegistro repositorioRegistro;
+	
+	@Autowired
+	private RepositorioFactura repositorioFactura;
 
 	@Autowired
 	private ParqueaderoConfiguracion configParqueadero;
@@ -52,6 +57,7 @@ public class ServicioRegistroVehiculoImpl implements ServicioRegistroVehiculo {
 		repositorioRegistro.retirarRegistro(registro);
 
 		Factura factura = vigilante.generarFactura(registro);
+		repositorioFactura.ingresarFactura(factura);
 		registroVehiculo = ConstructorRegistroDominio.convertirRegistroDominioARegVehiculo(registro);
 		registroVehiculo.setValorAPagar(factura.getValorAPagar());
 
@@ -59,11 +65,13 @@ public class ServicioRegistroVehiculoImpl implements ServicioRegistroVehiculo {
 	}
 
 	@Override
-	public void ingresarRegistro(RegistroVehiculo registroVehiculo) {
+	public RegistroVehiculo ingresarRegistro(RegistroVehiculo registroVehiculo) {
 
 		Vehiculo vehiculo = ConstructorRegistroDominio.convertirRegVehiculoSAVehiculoDominio(registroVehiculo);
 		Vigilante vigilante = configParqueadero.getVigilante();
 		Registro registro = vigilante.ingresarVehiculo(vehiculo);
 		repositorioRegistro.ingresarRegistro(registro);
+		registroVehiculo.setFechaEntrada(registro.getFechaEntrada());
+		return registroVehiculo;
 	}
 }
