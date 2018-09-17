@@ -57,6 +57,8 @@ public class ServicioRegistroVehiculoImpl implements ServicioRegistroVehiculo {
 		repositorioRegistro.retirarRegistro(registro);
 
 		Factura factura = vigilante.generarFactura(registro);
+		repositorioFactura.ingresarFactura(factura);
+		
 		registroVehiculo = ConstructorRegistroDominio.convertirRegistroDominioARegVehiculo(registro);
 		registroVehiculo.setValorAPagar(factura.getValorAPagar());
 
