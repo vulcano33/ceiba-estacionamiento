@@ -10,7 +10,12 @@ public class Vehiculo {
 	private Integer cilindrajeCC;
 	
 	public Vehiculo(String placa, Integer cilindrajeCC) {
-		this.placa = placa;
+		
+		if (placa != null) {
+			this.placa = placa.toUpperCase();
+		} else {
+			this.placa = placa;
+		}
 		this.cilindrajeCC = cilindrajeCC;
 	}
 

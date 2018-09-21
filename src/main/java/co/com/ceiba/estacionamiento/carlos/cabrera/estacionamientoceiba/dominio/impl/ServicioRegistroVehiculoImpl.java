@@ -75,6 +75,7 @@ public class ServicioRegistroVehiculoImpl implements ServicioRegistroVehiculo {
 		repositorioRegistro.ingresarRegistro(registro);
 		registroVehiculo.setFechaEntrada(registro.getFechaEntrada());
 		registroVehiculo.setTipoVehiculo(registroVehiculo.getTipoVehiculo().toUpperCase());
+		registroVehiculo.setPlaca(registroVehiculo.getPlaca().toUpperCase());
 		return registroVehiculo;
 	}
 }
