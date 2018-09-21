@@ -26,7 +26,7 @@ public class Vigilante {
 	public Registro ingresarVehiculo(Vehiculo vehiculo) {
 		Registro registro = null;
 
-		if (vehiculo.getPlaca().toUpperCase().startsWith("A") && this.ingresoDenegado(vehiculo.getPlaca())) {
+		if (vehiculo.getPlaca().toLowerCase().startsWith(LETRA_A) && this.ingresoDenegado()) {
 			throw new ParqueaderoException(NO_ESTA_AUTORIZADO_A_INGRESAR);
 		}
 		registro = parqueadero.ingresarVehiculo(vehiculo);
@@ -34,19 +34,17 @@ public class Vigilante {
 		return registro;
 	}
 
-	private boolean ingresoDenegado(String placa) {
+	private boolean ingresoDenegado() {
 		boolean ingresoDenegado = true;
-		if (placa.toLowerCase().startsWith(LETRA_A)) {
-			
-			DayOfWeek hoy = calendario.obtenerDiaDeHoy();
-			
-			if (hoy.equals(DayOfWeek.SUNDAY) || hoy.equals(DayOfWeek.MONDAY)) {
-				ingresoDenegado = false;
-			}
+
+		DayOfWeek hoy = calendario.obtenerDiaDeHoy();
+
+		if (hoy.equals(DayOfWeek.SUNDAY) || hoy.equals(DayOfWeek.MONDAY)) {
+			ingresoDenegado = false;
 		}
 		return ingresoDenegado;
 	}
-	
+
 	public Registro retirarVehiculo(Vehiculo vehiculo) {
 		return parqueadero.retirarVehiculo(vehiculo);
 	}
