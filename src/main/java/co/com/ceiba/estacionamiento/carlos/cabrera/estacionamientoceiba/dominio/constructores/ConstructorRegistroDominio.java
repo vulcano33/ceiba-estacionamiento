@@ -27,7 +27,9 @@ public class ConstructorRegistroDominio {
 		if (registroVehiculo != null) {
 			if (registroVehiculo.getTipoVehiculo().equalsIgnoreCase(TipoVehiculo.CARRO.getTipo())) {
 				vehiculo = new Carro(registroVehiculo.getPlaca(), registroVehiculo.getCilindrajeCC());
-			} else {
+			}
+			
+			if (registroVehiculo.getTipoVehiculo().equalsIgnoreCase(TipoVehiculo.MOTO.getTipo())) {
 				vehiculo = new Moto(registroVehiculo.getPlaca(), registroVehiculo.getCilindrajeCC());
 			}
 		}

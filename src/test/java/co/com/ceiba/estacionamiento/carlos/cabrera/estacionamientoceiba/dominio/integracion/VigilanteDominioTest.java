@@ -43,6 +43,7 @@ public class VigilanteDominioTest {
 	private static final Integer VALOR_HORA_MOTO = 500;
 	private static final Integer VALOR_ADICIONALCC = 2000;
 	private static final String PLACA_EMPIEZA_POR_A = "ART546";
+	private static final String PLACA_NO_EMPIEZA_POR_A = "QRT546";
 	private static final Integer DIAS_PERMANENCIA = 2;
 	private static final Integer HORAS_RESTANTES_SUPERIOR_AL_LIMITE = 10;
 	private static final Integer DIA_ADICIONAL = 1;
@@ -98,6 +99,45 @@ public class VigilanteDominioTest {
 	}
 	
 	@Test(expected = ParqueaderoException.class)
+	public void ingresarVehiculoSinPlaca() {
+		// Arrange
+		Parqueadero parqueadero = new Parqueadero(celdas, registros);
+		Calendario calendario = mock(Calendario.class);
+		when(calendario.obtenerDiaDeHoy()).thenReturn(DayOfWeek.WEDNESDAY);
+		Vigilante vigilante = new Vigilante(parqueadero, calendario, tarifas);
+
+		// Act
+		Vehiculo moto = new VehiculoTestBuilder().conPlaca(null).buildMoto();
+		vigilante.ingresarVehiculo(moto);
+	}
+	
+	@Test(expected = ParqueaderoException.class)
+	public void ingresarVehiculoConPlacaSinCilindraje() {
+		// Arrange
+		Parqueadero parqueadero = new Parqueadero(celdas, registros);
+		Calendario calendario = mock(Calendario.class);
+		when(calendario.obtenerDiaDeHoy()).thenReturn(DayOfWeek.WEDNESDAY);
+		Vigilante vigilante = new Vigilante(parqueadero, calendario, tarifas);
+
+		// Act
+		Vehiculo moto = new VehiculoTestBuilder().conPlaca(PLACA_NO_EMPIEZA_POR_A).conCilindrajeCC(0).buildMoto();
+		vigilante.ingresarVehiculo(moto);
+	}
+	
+	@Test(expected = ParqueaderoException.class)
+	public void ingresarVehiculoNoSoportado() {
+		// Arrange
+		Parqueadero parqueadero = new Parqueadero(celdas, registros);
+		Calendario calendario = mock(Calendario.class);
+		when(calendario.obtenerDiaDeHoy()).thenReturn(DayOfWeek.MONDAY);
+		Vigilante vigilante = new Vigilante(parqueadero, calendario, tarifas);
+
+		// Act
+		Vehiculo vehiculoNoSoportado = null;
+		vigilante.ingresarVehiculo(vehiculoNoSoportado);
+	}
+	
+	@Test(expected = ParqueaderoException.class)
 	public void ingresarVehiculoYNoHayCuposTest() {
 		// Arrange
 		Parqueadero parqueadero = new Parqueadero(celdas, registros);
@@ -112,7 +152,7 @@ public class VigilanteDominioTest {
 			Assert.assertEquals(moto.getPlaca(), registro.getVehiculo().getPlaca());
 		}
 		// Act
-		Vehiculo moto = new VehiculoTestBuilder().conPlaca("BB343").buildMoto();
+		Vehiculo moto = new VehiculoTestBuilder().conPlaca(PLACA_NO_EMPIEZA_POR_A).buildMoto();
 		vigilante.ingresarVehiculo(moto);
 	}
 

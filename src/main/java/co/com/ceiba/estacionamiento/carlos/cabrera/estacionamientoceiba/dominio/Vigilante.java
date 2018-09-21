@@ -11,8 +11,12 @@ import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.dominio.
  */
 public class Vigilante {
 	
-	public static final String NO_ESTA_AUTORIZADO_A_INGRESAR = "El vehículo no está autorizado a ingresar";
+	public static final String NO_ESTA_AUTORIZADO_A_INGRESAR = "El vehículo no está autorizado a ingresar";	
+	public static final String REGISTRO_SIN_PLACA = "Está intentando crear un registro sin especificar la placa. Por favor ingrese una placa.";
+	public static final String REGISTRO_SIN_CILINDRAJE = "Está intentando crear un registro sin especificar el cilindraje. Por favor ingrese un valor para el cilindraje.";
+	public static final String TIPO_VEHICULO_NO_SOPORTADO = "El tipo de vehículo que se ha recibido no está soportado";
 	private static final String LETRA_A = "a";
+	public static final Integer SIN_CILINDRAJE = 0;
 	private Parqueadero parqueadero;
 	private Calendario calendario;
 	private List<Tarifa> tarifas;
@@ -24,14 +28,24 @@ public class Vigilante {
 	}
 	
 	public Registro ingresarVehiculo(Vehiculo vehiculo) {
-		Registro registro = null;
-
+		
+		if (vehiculo == null) {
+			throw new ParqueaderoException(TIPO_VEHICULO_NO_SOPORTADO);
+		}
+		
+		if (vehiculo.getPlaca() == null || vehiculo.getPlaca().equals("")) {
+			throw new ParqueaderoException(REGISTRO_SIN_PLACA);
+		}
+		
+		if (vehiculo.getCilindrajeCC() == null || vehiculo.getCilindrajeCC() == SIN_CILINDRAJE) {
+			throw new ParqueaderoException(REGISTRO_SIN_CILINDRAJE);
+		}
+		
 		if (vehiculo.getPlaca().toLowerCase().startsWith(LETRA_A) && this.ingresoDenegado()) {
 			throw new ParqueaderoException(NO_ESTA_AUTORIZADO_A_INGRESAR);
 		}
-		registro = parqueadero.ingresarVehiculo(vehiculo);
 		
-		return registro;
+		return parqueadero.ingresarVehiculo(vehiculo);
 	}
 
 	private boolean ingresoDenegado() {

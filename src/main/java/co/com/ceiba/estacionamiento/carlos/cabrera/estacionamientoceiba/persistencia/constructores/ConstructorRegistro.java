@@ -43,7 +43,7 @@ public class ConstructorRegistro {
 		Date fechaSalida = DateUtil.getInstance().convertirLocalDateTimeADate(registro.getFechaSalida());
 		
 		RegistroEntidad registroEntidad = new RegistroEntidad();
-		registroEntidad.setPlaca(registro.getVehiculo().getPlaca());
+		registroEntidad.setPlaca(registro.getVehiculo().getPlaca().toUpperCase());
 		registroEntidad.setCilindrajeCC(registro.getVehiculo().getCilindrajeCC());
 		registroEntidad.setFechaEntrada(fechaEntrada);
 		registroEntidad.setFechaSalida(fechaSalida);

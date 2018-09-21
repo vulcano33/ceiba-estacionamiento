@@ -23,7 +23,7 @@ import co.com.ceiba.estacionamiento.carlos.cabrera.estacionamientoceiba.servicio
  */
 @Component
 public class ServicioRegistroVehiculoImpl implements ServicioRegistroVehiculo {
-
+	
 	@Autowired
 	private RepositorioRegistro repositorioRegistro;
 	
@@ -67,12 +67,14 @@ public class ServicioRegistroVehiculoImpl implements ServicioRegistroVehiculo {
 
 	@Override
 	public RegistroVehiculo ingresarRegistro(RegistroVehiculo registroVehiculo) {
-
+		
 		Vehiculo vehiculo = ConstructorRegistroDominio.convertirRegVehiculoSAVehiculoDominio(registroVehiculo);
+		
 		Vigilante vigilante = configParqueadero.getVigilante();
 		Registro registro = vigilante.ingresarVehiculo(vehiculo);
 		repositorioRegistro.ingresarRegistro(registro);
 		registroVehiculo.setFechaEntrada(registro.getFechaEntrada());
+		registroVehiculo.setTipoVehiculo(registroVehiculo.getTipoVehiculo().toUpperCase());
 		return registroVehiculo;
 	}
 }
